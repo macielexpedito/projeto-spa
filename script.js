@@ -5,3 +5,9 @@ const conversorVelocidade = document.querySelector("#velocidade");
 const conversorMassa = document.querySelector("#massa");
 const regraTres = document.querySelector("#regraDeTres");
 console.log (conversorMoeda);
+const secoes = document.querySelectorAll("section");
+
+secoes.forEach((secao) => {
+    secao.style.display = "none";
+});
+
