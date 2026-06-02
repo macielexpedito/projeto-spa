@@ -19,12 +19,54 @@
             <button id="regraDeTres">Regra de Três</button>
         </aside>
         <div>
-            <section></section>
-            <section></section>
-            <section></section>
-            <section></section>
-            <section></section>
-            <section></section>
+            <section class="painel">
+                <h2>Conversor de Moeda</h2>
+                <input type="number" id="valor" placeholder="Valor em Reais">
+
+                 <select id="tipo">
+                <option value = "usd"> USD -> BRL</option>
+                <option value = "brl"> BRL -> USD</option>
+                </select>
+        <button id="converter">Converter</button>
+        <p class="resultado"></p>
+            </section>
+            <section class="painel">
+                <h2>IMC</h2>
+                <input type="number" id="peso" placeholder="Peso">
+                <input type="number" id="altura" placeholder="Altura">
+                <select id="genero">
+                <option value="homem">Homem</option>
+                <option value="mulher">Mulher</option>
+            </select>
+                <button id="calcular">Calcular</button>         
+                <p class="resultado"></p>
+            </section>
+            <section class="painel">
+                <h2>Temperatura</h2>
+                <input type="number" id="temp">
+                <button id="converterTemp">Converter</button>
+                <p class="resultado"></p>
+            </section>
+            <section class="painel">
+                <h2>Velocidade</h2>
+                <input type="number" id="km">
+                <button id="converterVel">Converter</button>        
+                <p class="resultado"></p>
+            </section>
+            <section class="painel">
+                <h2>Massa</h2>
+                <input type="number" id="kg">
+                <button id="converterKg">Converter</button>
+                <p class="resultado"></p>
+            </section>
+            <section class="painel">
+                <h2>Regra de 3</h2>
+                <input type="number" id="a" placeholder="A">
+                <input type="number" id="b" placeholder="B">
+                <input type="number" id="c" placeholder="C">
+                <button id="calcularRegra">Calcular</button>
+                <p class="resultado"></p>
+            </section>
         </div>
     </main>
     <footer><h1>Footer</h1></footer>
