@@ -93,6 +93,36 @@ function calcularIMC(peso, altura) {
     return peso / (altura ** 2);
 }
 
+// Classifica o IMC com base no gênero
+function classificarIMC(imc, genero) {
+
+    if (genero === "homem") {
+
+        if (imc < 18.5) {
+            return "Abaixo do peso";
+        } else if (imc < 25) {
+            return "Normal";
+        } else if (imc < 30) {
+            return "Sobrepeso";
+        } else {
+            return "Obesidade";
+        }
+
+    } else {
+
+        if (imc < 18.5) {
+            return "Abaixo do peso";
+        } else if (imc < 24) {
+            return "Normal";
+        } else if (imc < 29) {
+            return "Sobrepeso";
+        } else {
+            return "Obesidade";
+        }
+
+    }
+}
+
 function controllerIMC() {
 
     // Impede o reload do formulário
@@ -101,7 +131,7 @@ function controllerIMC() {
     });
 
     const btnCalcular = document.getElementById("calcular");
-
+        // Adiciona o evento de clique ao botão "Calcular"
     btnCalcular.addEventListener("click", () => {
 
         const peso = parseFloat(document.getElementById("peso").value);
@@ -111,12 +141,14 @@ function controllerIMC() {
         
 
         const imc = calcularIMC(peso, altura);
-
+        // Exibe o resultado na página
         const resultado = btnCalcular.parentElement.querySelector(".resultado");
 
+        // Exibe o resultado formatado
         resultado.innerHTML = `
             Gênero: ${genero}<br>
             IMC: ${imc.toFixed(2)}
+            Classificação: ${classificarIMC(imc, genero)}
         `;
     });
 }
