@@ -184,4 +184,14 @@ function converterTemperatura() {
     }
 }
 
+function controllerTemp() {
+
+    btnConverter.addEventListener("click", function (e) {
+        e.preventDefault();
+        converterTemperatura();
+    });
+
+}
+
+controllerTemp();
 
