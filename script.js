@@ -125,13 +125,13 @@ function classificarIMC(imc, genero) {
 
 function controllerIMC() {
 
-    // Impede o reload do formulário
+    
     document.querySelector("form").addEventListener("submit", (e) => {
         e.preventDefault();
     });
 
     const btnCalcular = document.getElementById("calcular");
-        // Adiciona o evento de clique ao botão "Calcular"
+        
     btnCalcular.addEventListener("click", () => {
 
         const peso = parseFloat(document.getElementById("peso").value);
@@ -141,10 +141,10 @@ function controllerIMC() {
         
 
         const imc = calcularIMC(peso, altura);
-        // Exibe o resultado na página
+        
         const resultado = btnCalcular.parentElement.querySelector(".resultado");
 
-        // Exibe o resultado formatado
+
         resultado.innerHTML = `
             Gênero: ${genero}<br>
             IMC: ${imc.toFixed(2)}
@@ -154,3 +154,9 @@ function controllerIMC() {
 }
 
 controllerIMC();
+
+const tipoTemp = document.getElementById("tipoTemp");
+const resultadoTemp = document.querySelectorAll(".resultado")[2];
+const btnConverter = document.getElementById("converterTemp");
+
+
