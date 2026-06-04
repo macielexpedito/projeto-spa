@@ -159,4 +159,29 @@ const tipoTemp = document.getElementById("tipoTemp");
 const resultadoTemp = document.querySelectorAll(".resultado")[2];
 const btnConverter = document.getElementById("converterTemp");
 
+function converterTemperatura() {
+
+    const valor = parseFloat(document.getElementById("temp").value);
+
+    if (isNaN(valor)) {
+        resultadoTemp.textContent = "Digite uma temperatura válida.";
+        return;
+    }
+
+    if (tipoTemp.value === "celsius") {
+
+        const tempF = (valor * 9 / 5) + 32;
+
+        resultadoTemp.textContent =
+            `${valor.toFixed(2)} °C é igual a ${tempF.toFixed(2)} °F`;
+
+    } else {
+
+        const tempC = (valor - 32) * 5 / 9;
+
+        resultadoTemp.textContent =
+            `${valor.toFixed(2)} °F é igual a ${tempC.toFixed(2)} °C`;
+    }
+}
+
 
