@@ -49,7 +49,7 @@ elemento.sections[5].classList.add('regraDeTres');
 
 document.getElementById('converter').addEventListener('click', async ()=>{ 
 
-    const valor = Number(document.getElementById('valor').value);
+    const valor = parseFloat(document.getElementById('valor').value);
 
     const tipo = document.getElementById('tipo').value;
 
@@ -63,7 +63,7 @@ document.getElementById('converter').addEventListener('click', async ()=>{
 
         const dados = await resposta.json();
 
-        const cotacao = Number(dados.USDBRL.bid);
+        const cotacao = parseFloat(dados.USDBRL.bid);
 
         if(tipo === 'usd'){
 
@@ -246,7 +246,33 @@ const valor = parseFloat(document.getElementById("Peso").value);
 if (isNaN(valor)) {
 resultadoPeso.textContent = "Digite um peso válido.";
 return;
+}  
+if (tipoPeso.value === "kgToLb") {
+
+const pesoLibra = valor * 2.20462;
+
+resultadoPeso.textContent =
+`${valor.toFixed(2)} kg é igual a ${pesoLibra.toFixed(2)} lbs`;
+
+} else {
+
+const pesoKg = valor / 2.20462;
+
+resultadoPeso.textContent =
+`${valor.toFixed(2)} lbs é igual a ${pesoKg.toFixed(2)} kg`;
 }
+}
+
+function controllerPeso() {
+
+btnConverterPeso.addEventListener("click", function (e) {
+e.preventDefault();
+converterMassa();
+});
+
+}
+
+controllerPeso();
 
 
 
