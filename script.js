@@ -195,3 +195,62 @@ function controllerTemp() {
 
 controllerTemp();
 
+const tipoVel = document.getElementById("tipoVel");
+const resultadoVel = document.querySelectorAll(".resultado")[3];
+const btnConverterVel = document.getElementById("converterVel");
+
+function converterVelocidade() {
+
+const valor = parseFloat(document.getElementById("km").value);
+
+if (isNaN(valor)) {
+resultadoVel.textContent = "Digite uma velocidade válida.";
+return;
+}
+
+if (tipoVel.value === "kmhToMs") {
+
+const velMilhas = valor * 0.621371;
+
+resultadoVel.textContent =
+`${valor.toFixed(2)} km/h é igual a ${velMilhas.toFixed(2)} mph`;
+
+} else {
+
+const velKm = valor / 0.621371;
+
+resultadoVel.textContent =
+`${valor.toFixed(2)} mph é igual a ${velKm.toFixed(2)} km/h`;
+}
+}
+
+function controllerVel() {
+
+btnConverterVel.addEventListener("click", function (e) {
+e.preventDefault();
+converterVelocidade();
+});
+
+}
+
+controllerVel();
+
+const tipoPeso = document.getElementById("tipoPeso");
+const resultadoPeso = document.querySelectorAll(".resultado")[4];
+const btnConverterPeso = document.getElementById("converterPeso");
+
+function converterMassa() {
+
+const valor = parseFloat(document.getElementById("Peso").value);
+
+if (isNaN(valor)) {
+resultadoPeso.textContent = "Digite um peso válido.";
+return;
+}
+
+
+
+
+
+
+

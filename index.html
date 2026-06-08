@@ -22,7 +22,6 @@
             <section class="painel">
                 <h2>Conversor de Moeda</h2>
                 <input type="number" id="valor" placeholder="Valor em Reais">
-
                  <select id="tipo">
                 <option value = "usd"> USD -> BRL</option>
                 <option value = "brl"> BRL -> USD</option>
@@ -56,15 +55,28 @@
                 <p class="resultado"></p>
             </section>
             <section class="painel">
+                <form action="">
                 <h2>Velocidade</h2>
                 <input type="number" id="km">
-                <button id="converterVel">Converter</button>        
+                <button id="converterVel">Converter</button> 
+                <select id="tipoVel">
+                <option value="kmhToMs">Km/h -> m/s</option>
+                <option value="msToKmh">m/s -> Km/h</option>
+                </select>
+                </form>       
                 <p class="resultado"></p>
+                
             </section>
             <section class="painel">
+                <form action="">
                 <h2>Massa</h2>
-                <input type="number" id="kg">
-                <button id="converterKg">Converter</button>
+                <input type="number" id="Peso">
+                <button id="converterPeso">Converter</button>
+                <select id="tipoPeso">
+                <option value="kgToLb">Kg -> Lb</option>
+                <option value="lbToKg">Lb -> Kg</option>
+                </select>
+                </form>
                 <p class="resultado"></p>
             </section>
             <section class="painel">
