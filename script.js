@@ -35,7 +35,9 @@ function displayController(id){
         }
 
     });
+
 }
+
 
 elemento.sections[0].classList.add('moeda');
 elemento.sections[1].classList.add('imc');
@@ -43,6 +45,7 @@ elemento.sections[2].classList.add('temperatura');
 elemento.sections[3].classList.add('velocidade');
 elemento.sections[4].classList.add('massa');
 elemento.sections[5].classList.add('regraDeTres');
+
 
 document.getElementById('converter').addEventListener('click', async ()=>{ 
 
@@ -198,97 +201,39 @@ const btnConverterVel = document.getElementById("converterVel");
 
 function converterVelocidade() {
 
-const valor = parseFloat(document.getElementById("km").value);
+    const valor = parseFloat(document.getElementById("km").value);
 
-if (isNaN(valor)) {
-resultadoVel.textContent = "Digite uma velocidade válida.";
-return;
-}
+    if (isNaN(valor)) {
+        resultadoVel.textContent = "Digite uma velocidade válida.";
+        return;
+    }
 
-if (tipoVel.value === "kmhToMs") {
+    if (tipoVel.value === "kmhToMs") {
 
-const velMilhas = valor * 0.621371;
+        const velMilhas = valor * 0.621371;
 
-resultadoVel.textContent =
-`${valor.toFixed(2)} km/h é igual a ${velMilhas.toFixed(2)} mph`;
+        resultadoVel.textContent =
+            `${valor.toFixed(2)} km/h é igual a ${velMilhas.toFixed(2)} mph`;
 
-} else {
+    } else {
 
-const velKm = valor / 0.621371;
+        const velKm = valor / 0.621371;
 
-resultadoVel.textContent =
-`${valor.toFixed(2)} mph é igual a ${velKm.toFixed(2)} km/h`;
-}
+        resultadoVel.textContent =
+            `${valor.toFixed(2)} mph é igual a ${velKm.toFixed(2)} km/h`;
+    }
 }
 
 function controllerVel() {
 
-btnConverterVel.addEventListener("click", function (e) {
-e.preventDefault();
-converterVelocidade();
-});
+    btnConverterVel.addEventListener("click", function (e) {
+        e.preventDefault();
+        converterVelocidade();
+    });
 
 }
 
 controllerVel();
-
-const tipoPeso = document.getElementById("tipoPeso");
-const resultadoPeso = document.querySelectorAll(".resultado")[4];
-const btnConverterPeso = document.getElementById("converterPeso");
-
-function converterMassa() {
-
-const valor = parseFloat(document.getElementById("Peso").value);
-
-if (isNaN(valor)) {
-resultadoPeso.textContent = "Digite um peso válido.";
-return;
-}  
-if (tipoPeso.value === "kgToLb") {
-
-const pesoLibra = valor * 2.20462;
-
-resultadoPeso.textContent =
-`${valor.toFixed(2)} kg é igual a ${pesoLibra.toFixed(2)} lbs`;
-
-} else {
-
-const pesoKg = valor / 2.20462;
-
-resultadoPeso.textContent =
-`${valor.toFixed(2)} lbs é igual a ${pesoKg.toFixed(2)} kg`;
-}
-}
-
-function controllerPeso() {
-
-btnConverterPeso.addEventListener("click", function (e) {
-e.preventDefault();
-converterMassa();
-});
-
-}
-
-controllerPeso();
-
-const btnCalcularRegra = document.getElementById("calcularRegra");
-
-btnCalcularRegra.addEventListener("click", calcular);
-
-function calcular() {
-const a = parseFloat(document.getElementById("a").value);
-const b = parseFloat(document.getElementById("b").value);
-const c = parseFloat(document.getElementById("c").value);
-
-const resultado = (b * c) / a;
-
-const resultados = document.querySelectorAll(".resultado");
-
-resultados[5].textContent = "Resultado: " + resultado;
-}
-
-
-
 
 
 
