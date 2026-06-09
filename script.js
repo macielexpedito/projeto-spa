@@ -1,87 +1,46 @@
-
-const elemento = {
-
-    aside: document.querySelector('aside'),
-    sections: document.querySelectorAll('section')
-
-}
-
-console.log(elemento.aside);
-
-elemento.aside.addEventListener('click', (e)=>{
-
-    e.preventDefault();
-
-    if(e.target.tagName === 'BUTTON'){
-
-        console.log(e.target.id);
-
-        displayController(e.target.id);
-
-    }
-
-});
-
-function displayController(id){
-
-    elemento.sections.forEach(section => {
-
-        section.classList.add('painel');
-
-        if(section.classList.contains(id)){
-
-            section.classList.remove('painel');
-
-        }
-
-    });
-
-}
-
-
-elemento.sections[0].classList.add('moeda');
-elemento.sections[1].classList.add('imc');
-elemento.sections[2].classList.add('temperatura');
-elemento.sections[3].classList.add('velocidade');
-elemento.sections[4].classList.add('massa');
-elemento.sections[5].classList.add('regraDeTres');
-
-
 document.getElementById('converter').addEventListener('click', async ()=>{ 
 
     const valor = Number(document.getElementById('valor').value);
-
     const tipo = document.getElementById('tipo').value;
-
     const resultado = document.querySelectorAll('.resultado')[0];
 
     try{
 
+        console.log('Iniciando requisição...');
+
         const resposta = await fetch(
-        'https://economia.awesomeapi.com.br/json/last/USD-BRL'
+            'https://economia.awesomeapi.com.br/json/last/USD-BRL'
         );
+
+        console.log('Resposta recebida:', resposta);
 
         const dados = await resposta.json();
 
+        console.log('Dados da API:', dados);
+
         const cotacao = Number(dados.USDBRL.bid);
+
+        console.log('Cotação do dólar:', cotacao);
 
         if(tipo === 'usd'){
 
             resultado.textContent =
             'R$ ' + (valor * cotacao).toFixed(2);
 
-        }
-
-        else{
+        } else {
 
             resultado.textContent =
             'US$ ' + (valor / cotacao).toFixed(2);
 
         }
 
+        console.log('Resultado exibido:', resultado.textContent);
+
     }
 
-    catch{
+    catch(erro){
+
+        console.error('Erro no fetch:', erro);
 
         resultado.textContent = 'Erro na API';
 
@@ -201,39 +160,97 @@ const btnConverterVel = document.getElementById("converterVel");
 
 function converterVelocidade() {
 
-    const valor = parseFloat(document.getElementById("km").value);
+const valor = parseFloat(document.getElementById("km").value);
 
-    if (isNaN(valor)) {
-        resultadoVel.textContent = "Digite uma velocidade válida.";
-        return;
-    }
+if (isNaN(valor)) {
+resultadoVel.textContent = "Digite uma velocidade válida.";
+return;
+}
 
-    if (tipoVel.value === "kmhToMs") {
+if (tipoVel.value === "kmhToMs") {
 
-        const velMilhas = valor * 0.621371;
+const velMilhas = valor * 0.621371;
 
-        resultadoVel.textContent =
-            `${valor.toFixed(2)} km/h é igual a ${velMilhas.toFixed(2)} mph`;
+resultadoVel.textContent =
+`${valor.toFixed(2)} km/h é igual a ${velMilhas.toFixed(2)} mph`;
 
-    } else {
+} else {
 
-        const velKm = valor / 0.621371;
+const velKm = valor / 0.621371;
 
-        resultadoVel.textContent =
-            `${valor.toFixed(2)} mph é igual a ${velKm.toFixed(2)} km/h`;
-    }
+resultadoVel.textContent =
+`${valor.toFixed(2)} mph é igual a ${velKm.toFixed(2)} km/h`;
+}
 }
 
 function controllerVel() {
 
-    btnConverterVel.addEventListener("click", function (e) {
-        e.preventDefault();
-        converterVelocidade();
-    });
+btnConverterVel.addEventListener("click", function (e) {
+e.preventDefault();
+converterVelocidade();
+});
 
 }
 
 controllerVel();
+
+const tipoPeso = document.getElementById("tipoPeso");
+const resultadoPeso = document.querySelectorAll(".resultado")[4];
+const btnConverterPeso = document.getElementById("converterPeso");
+
+function converterMassa() {
+
+const valor = parseFloat(document.getElementById("Peso").value);
+
+if (isNaN(valor)) {
+resultadoPeso.textContent = "Digite um peso válido.";
+return;
+}  
+if (tipoPeso.value === "kgToLb") {
+
+const pesoLibra = valor * 2.20462;
+
+resultadoPeso.textContent =
+`${valor.toFixed(2)} kg é igual a ${pesoLibra.toFixed(2)} lbs`;
+
+} else {
+
+const pesoKg = valor / 2.20462;
+
+resultadoPeso.textContent =
+`${valor.toFixed(2)} lbs é igual a ${pesoKg.toFixed(2)} kg`;
+}
+}
+
+function controllerPeso() {
+
+btnConverterPeso.addEventListener("click", function (e) {
+e.preventDefault();
+converterMassa();
+});
+
+}
+
+controllerPeso();
+
+const btnCalcularRegra = document.getElementById("calcularRegra");
+
+btnCalcularRegra.addEventListener("click", calcular);
+
+function calcular() {
+const a = parseFloat(document.getElementById("a").value);
+const b = parseFloat(document.getElementById("b").value);
+const c = parseFloat(document.getElementById("c").value);
+
+const resultado = (b * c) / a;
+
+const resultados = document.querySelectorAll(".resultado");
+
+resultados[5].textContent = "Resultado: " + resultado;
+}
+
+
+
 
 
 
