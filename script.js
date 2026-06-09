@@ -46,7 +46,7 @@ elemento.sections[5].classList.add('regraDeTres');
 
 document.getElementById('converter').addEventListener('click', async ()=>{ 
 
-    const valor = parseFloat(document.getElementById('valor').value);
+    const valor = Number(document.getElementById('valor').value);
 
     const tipo = document.getElementById('tipo').value;
 
@@ -60,7 +60,7 @@ document.getElementById('converter').addEventListener('click', async ()=>{
 
         const dados = await resposta.json();
 
-        const cotacao = parseFloat(dados.USDBRL.bid);
+        const cotacao = Number(dados.USDBRL.bid);
 
         if(tipo === 'usd'){
 
