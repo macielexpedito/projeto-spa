@@ -35,9 +35,7 @@ function displayController(id){
         }
 
     });
-
 }
-
 
 elemento.sections[0].classList.add('moeda');
 elemento.sections[1].classList.add('imc');
@@ -45,7 +43,6 @@ elemento.sections[2].classList.add('temperatura');
 elemento.sections[3].classList.add('velocidade');
 elemento.sections[4].classList.add('massa');
 elemento.sections[5].classList.add('regraDeTres');
-
 
 document.getElementById('converter').addEventListener('click', async ()=>{ 
 
@@ -273,6 +270,22 @@ converterMassa();
 }
 
 controllerPeso();
+
+const btnCalcularRegra = document.getElementById("calcularRegra");
+
+btnCalcularRegra.addEventListener("click", calcular);
+
+function calcular() {
+const a = parseFloat(document.getElementById("a").value);
+const b = parseFloat(document.getElementById("b").value);
+const c = parseFloat(document.getElementById("c").value);
+
+const resultado = (b * c) / a;
+
+const resultados = document.querySelectorAll(".resultado");
+
+resultados[5].textContent = "Resultado: " + resultado;
+}
 
 
 
