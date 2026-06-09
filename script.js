@@ -1,7 +1,58 @@
+
+const elemento = {
+
+    aside: document.querySelector('aside'),
+    sections: document.querySelectorAll('section')
+
+}
+
+console.log(elemento.aside);
+
+elemento.aside.addEventListener('click', (e)=>{
+
+    e.preventDefault();
+
+    if(e.target.tagName === 'BUTTON'){
+
+        console.log(e.target.id);
+
+        displayController(e.target.id);
+
+    }
+
+});
+
+function displayController(id){
+
+    elemento.sections.forEach(section => {
+
+        section.classList.add('painel');
+
+        if(section.classList.contains(id)){
+
+            section.classList.remove('painel');
+
+        }
+
+    });
+
+}
+
+
+elemento.sections[0].classList.add('moeda');
+elemento.sections[1].classList.add('imc');
+elemento.sections[2].classList.add('temperatura');
+elemento.sections[3].classList.add('velocidade');
+elemento.sections[4].classList.add('massa');
+elemento.sections[5].classList.add('regraDeTres');
+
+
 document.getElementById('converter').addEventListener('click', async ()=>{ 
 
     const valor = Number(document.getElementById('valor').value);
+
     const tipo = document.getElementById('tipo').value;
+
     const resultado = document.querySelectorAll('.resultado')[0];
 
     try{
@@ -9,38 +60,31 @@ document.getElementById('converter').addEventListener('click', async ()=>{
         console.log('Iniciando requisição...');
 
         const resposta = await fetch(
-            'https://economia.awesomeapi.com.br/json/last/USD-BRL'
+        'https://economia.awesomeapi.com.br/json/last/USD-BRL'
         );
-
-        console.log('Resposta recebida:', resposta);
+         console.log('Resposta recebida:', resposta);
 
         const dados = await resposta.json();
 
-        console.log('Dados da API:', dados);
-
         const cotacao = Number(dados.USDBRL.bid);
-
-        console.log('Cotação do dólar:', cotacao);
 
         if(tipo === 'usd'){
 
             resultado.textContent =
             'R$ ' + (valor * cotacao).toFixed(2);
 
-        } else {
+        }
+
+        else{
 
             resultado.textContent =
             'US$ ' + (valor / cotacao).toFixed(2);
 
         }
 
-        console.log('Resultado exibido:', resultado.textContent);
-
     }
 
-    catch(erro){
-
-        console.error('Erro no fetch:', erro);
+    catch{
 
         resultado.textContent = 'Erro na API';
 
