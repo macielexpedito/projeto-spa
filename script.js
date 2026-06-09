@@ -49,7 +49,7 @@ elemento.sections[5].classList.add('regraDeTres');
 
 document.getElementById('converter').addEventListener('click', async ()=>{ 
 
-    const valor = Number(document.getElementById('valor').value);
+    const valor = parseFloat(document.getElementById('valor').value);
 
     const tipo = document.getElementById('tipo').value;
 
@@ -66,7 +66,7 @@ document.getElementById('converter').addEventListener('click', async ()=>{
 
         const dados = await resposta.json();
 
-        const cotacao = Number(dados.USDBRL.bid);
+        const cotacao = parseFloat(dados.USDBRL.bid);
 
         if(tipo === 'usd'){
 
@@ -98,10 +98,11 @@ function calcularIMC(peso, altura) {
 
 // Classifica o IMC com base no gênero
 function classificarIMC(imc, genero) {
-
+    
     if (genero === "homem") {
+        
 
-        if (imc < 18.5) {
+         if (imc < 18.5) {
             return "Abaixo do peso";
         } else if (imc < 25) {
             return "Normal";
@@ -109,7 +110,9 @@ function classificarIMC(imc, genero) {
             return "Sobrepeso";
         } else {
             return "Obesidade";
-        }
+        } 
+        
+          
 
     } else {
 
@@ -126,7 +129,8 @@ function classificarIMC(imc, genero) {
     }
 }
 
-function controllerIMC() {
+
+function controllerIMC() {    
 
     
     document.querySelector("form").addEventListener("submit", (e) => {
@@ -138,14 +142,23 @@ function controllerIMC() {
     btnCalcular.addEventListener("click", () => {
 
         const peso = parseFloat(document.getElementById("peso").value);
+        if (peso <= 0) {
+         return "Digite um número maior que 0";
+        }
         const altura = parseFloat(document.getElementById("altura").value);
+        if (altura <= 0) {
+         return "Digite um número maior que 0";
+        }
         const genero = document.getElementById("genero").value;
-
-        
+       
 
         const imc = calcularIMC(peso, altura);
         
         const resultado = btnCalcular.parentElement.querySelector(".resultado");
+        if (isNaN(peso) || isNaN(altura)) {
+            resultado.textContent = "Digite valores válidos para peso e altura.";
+            return;
+        }           
 
 
         resultado.innerHTML = `
@@ -154,6 +167,7 @@ function controllerIMC() {
             Classificação: ${classificarIMC(imc, genero)}
         `;
     });
+    
 }
 
 controllerIMC();
@@ -289,6 +303,10 @@ const c = parseFloat(document.getElementById("c").value);
 const resultado = (b * c) / a;
 
 const resultados = document.querySelectorAll(".resultado");
+if (isNaN(a) || isNaN(b) || isNaN(c) || a === 0) {
+    resultados[5].textContent = "Digite valores válidos para a, b e c ";
+    return;
+}
 
 resultados[5].textContent = "Resultado: " + resultado;
 }
