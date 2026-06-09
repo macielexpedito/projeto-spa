@@ -108,7 +108,8 @@ function classificarIMC(imc, genero) {
             return "Normal";
         } else if (imc < 30) {
             return "Sobrepeso";
-        } else {
+        } 
+        else {
             return "Obesidade";
         } 
         
@@ -155,10 +156,11 @@ function controllerIMC() {
         const imc = calcularIMC(peso, altura);
         
         const resultado = btnCalcular.parentElement.querySelector(".resultado");
-        if (isNaN(peso) || isNaN(altura)) {
-            resultado.textContent = "Digite valores válidos para peso e altura.";
+        if ((peso === '' || isNaN(peso)) || (altura === 0 || isNaN(altura))) {
+            alert("Digite valores válidos para peso e altura.");
             return;
-        }           
+        } 
+               
 
 
         resultado.innerHTML = `
