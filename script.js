@@ -143,15 +143,18 @@ function controllerIMC() {
     btnCalcular.addEventListener("click", () => {
 
         const peso = parseFloat(document.getElementById("peso").value);
-        if (peso <= 0) {
-         return "Digite um número maior que 0";
-        }
+      
         const altura = parseFloat(document.getElementById("altura").value);
-        if (altura <= 0) {
-         return "Digite um número maior que 0";
-        }
+        
         const genero = document.getElementById("genero").value;
-       
+       if (isNaN(peso) || isNaN(altura)) {
+            alert("Digite valores válidos para peso e altura.");
+            return;
+        }
+        if (peso <= 0 || altura <= 0) {
+            alert("Peso e altura devem ser maiores que zero.");
+            return;
+        }
 
         const imc = calcularIMC(peso, altura);
         
@@ -159,8 +162,7 @@ function controllerIMC() {
         if ((peso === '' || isNaN(peso)) || (altura === 0 || isNaN(altura))) {
             alert("Digite valores válidos para peso e altura.");
             return;
-        } 
-               
+        }            
 
 
         resultado.innerHTML = `
